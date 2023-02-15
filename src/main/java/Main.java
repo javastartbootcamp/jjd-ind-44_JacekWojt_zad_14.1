@@ -5,7 +5,7 @@ public class Main {
 
     public static void main(String[] args) {
         try {
-            String numbersFile = "numbers.txt";
+            String numbersFile = "liczby.txt";
             Map<Integer, Integer> numberMap = NumberTools.createNumberMap(numbersFile);
             NumberTools.printResults(numberMap);
         } catch (FileNotFoundException e) {

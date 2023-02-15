@@ -7,32 +7,19 @@ import java.util.TreeMap;
 public class NumberTools {
     public static Map<Integer, Integer> createNumberMap(String numbersFile) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(numbersFile));
-        int lines = countLines(numbersFile);
         Map<Integer, Integer> numberMap = new TreeMap<>();
-        for (int i = 0; i < lines; i++) {
+        while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            Integer value = Integer.valueOf(line);
-            if (numberMap.containsKey(value)) {
-                Integer counter = numberMap.get(value);
+            Integer key = Integer.valueOf(line);
+            if (numberMap.containsKey(key)) {
+                Integer counter = numberMap.get(key);
                 counter += 1;
-                numberMap.remove(value);
-                numberMap.put(value, counter);
+                numberMap.put(key, counter);
             } else {
-                numberMap.put(value, 1);
+                numberMap.put(key, 1);
             }
         }
         return numberMap;
-    }
-
-    private static int countLines(String fileName) throws FileNotFoundException {
-        try (Scanner scanner = new Scanner(new File(fileName))) {
-            int lines = 0;
-            while (scanner.hasNextLine()) {
-                lines++;
-                scanner.nextLine();
-            }
-            return lines;
-        }
     }
 
     public static void printResults(Map<Integer, Integer> numberMap) {
